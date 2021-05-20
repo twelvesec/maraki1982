@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "URL Crafter";
+}
+
+<input type="hidden" value="@ViewBag.MicrosoftUrl" id="copyMicrosoftUrl" />
+<input type="hidden" value="@ViewBag.GoogleUrl" id="copyGoogleUrl" />
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <h4>Malicious URLs</h4>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">Microsoft Malicious URL Crafted: <a href="@ViewBag.MicrosoftUrl" target="_blank">Navigate</a> | <a href="#" onclick="CopyMicrosoftUrl()">Copy to Clipboard</a></div>
+            </div>
+            <div class="row"><br /></div>
+            <div class="row">
+                <div class="col-sm-12">Google Malicious URL Crafted: <a href="@ViewBag.GoogleUrl" target="_blank">Navigate</a> | <a href="#" onclick="CopyGoogleUrl()">Copy to Clipboard</a></div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div class="row"><br /><br /></div>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="alert alert-info" role="alert">
+                Use the above URLs to start your Social Engineering campaign. The URLs where crafted based on the settings provided in the appsettings.json. 
+                @*For more inforamtion on how this URLs are being constructed, check the documentation at <a href="https://github.com/twelvesec" target="_blank">GitHub</a>.*@
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+<script>
+    function CopyMicrosoftUrl() {
+        var copyText = document.getElementById("copyMicrosoftUrl");
+        navigator.clipboard.writeText(copyText.value);
+    }
+
+    function CopyGoogleUrl() {
+        var copyText = document.getElementById("copyGoogleUrl");
+        navigator.clipboard.writeText(copyText.value);
+    }
+</script>

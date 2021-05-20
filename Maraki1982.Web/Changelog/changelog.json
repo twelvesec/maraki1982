@@ -1,0 +1,93 @@
+{
+  "current_version":  3,
+  "details": [
+    {
+      "id": 10,
+      "version": "1.1.0",
+      "items": [
+        "Get organization users",
+        "Perform all actions on organization users"
+      ]
+    },
+    {
+      "id": 9,
+      "version": "1.0.5",
+      "items": [
+        "Efficient global exception handler"
+      ]
+    },
+    {
+      "id": 8,
+      "version": "1.0.4",
+      "items": [
+        "Get User Contacts"
+      ]
+    },
+    {
+      "id": 7,
+      "version": "1.0.3",
+      "items": [
+        "Create and send email"
+      ]
+    },
+    {
+      "id": 6,
+      "version": "1.0.2",
+      "items": [
+        "Get Email Attachments"
+      ]
+    },
+    {
+      "id": 5,
+      "version": "1.0.1",
+      "items": [
+        "Create URL Crafter"
+      ]
+    },
+    {
+      "id": 4,
+      "version": "1.0.0",
+      "items": [
+        "Google Get Hooked Users Emails",
+        "Google Get Hooked Users Drives",
+        "Google Get Hooked Users Folders",
+        "Google Get Hooked Users Files"
+      ]
+    },
+    {
+      "id": 3,
+      "version": "0.7.0",
+      "items": [
+        "Minor fixes on routing",
+        "Add logging display on Web UI",
+        "Add log files donwload"
+      ]
+    },
+    {
+      "id": 2,
+      "version": "0.6.0",
+      "items": [
+        "Refactoring to support multiple platforms",
+        "Google Malicious URL",
+        "Google Malicious Endpoint",
+        "Google Hooked Users",
+        "Add logging on Exception (Global)",
+        "Add logging on MS and google malicious URL exception",
+        "Add redirect on exception"
+      ]
+    },
+    {
+      "id": 1,
+      "version": "0.5.0",
+      "items": [
+        "Microsoft Malicious URL",
+        "Microsoft Malicious Endpoint",
+        "Microsoft Hooked Users",
+        "Microsoft Get Hooked Users Emails",
+        "Microsoft Get Hooked Users Drives",
+        "Microsoft Get Hooked Users Folders",
+        "Microsoft Get Hooked Users Files"
+      ]
+    }
+  ]
+}

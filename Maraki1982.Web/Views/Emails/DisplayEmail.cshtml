@@ -1,0 +1,7 @@
+﻿@{
+    Layout = null;
+}
+
+@model Maraki1982.Core.Models.Database.Email
+
+@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Content))

@@ -1,0 +1,79 @@
+﻿@model Maraki1982.Web.Helpers.PaginatedList<Maraki1982.Core.Models.Database.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="RefreshTokens">Refresh Tokens</a>
+</p>
+
+<div style="text-align:right">
+    TotalUsers: @ViewData["TotalUsers"] | 
+    <a asp-action="Index" asp-route-pageNumber="1" asp-route-vendor="@null">Get All</a> |
+    <a asp-action="Index" asp-route-pageNumber="1" asp-route-vendor="@Maraki1982.Core.Models.Enum.VendorEnum.Microsoft">Get Microsoft Users</a> |
+    <a asp-action="Index" asp-route-pageNumber="1" asp-route-vendor="@Maraki1982.Core.Models.Enum.VendorEnum.Google">Get Google Users</a>
+</div>
+
+<br />
+
+<div style="text-align:right">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-vendor="@ViewData["VendorSortParm"]">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-vendor="@ViewData["VendorSortParm"]">Next</a>
+    }
+</div>
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Vendor
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Actions
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Enum.GetName(typeof(Maraki1982.Core.Models.Enum.VendorEnum), item.Vendor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="Tokens" asp-route-id="@item.Id">Show Tokens</a> |
+                <a asp-controller="EmailFolders" asp-action="Index" asp-route-userId="@item.Id">Show Email Folders</a> |
+                <a asp-controller="Drives" asp-action="Index" asp-route-userId="@item.Id">Show Drives</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

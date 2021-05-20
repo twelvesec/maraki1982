@@ -1,0 +1,113 @@
+﻿@model Maraki1982.Web.Models.Changelog.ChangelogModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        Error: @ViewBag.ErrorMessage
+    </div>
+}
+
+@{ 
+    List<Maraki1982.Web.Models.Changelog.ChangelogDetailsModel> current = Model.Details.FindAll(x => x.Id <= Model.CurrentVersion).OrderByDescending(x => x.Id).ToList();
+    List<Maraki1982.Web.Models.Changelog.ChangelogDetailsModel> upcoming = Model.Details.FindAll(x => x.Id > Model.CurrentVersion).OrderBy(x => x.Id).ToList();
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="jumbotron">
+                <h4 class="text-center">Welcome to Maraki1982!</h4>
+                <p class="lead">Maraki1982 is a <b>Social Engineering Post Exploitation Tool</b> that takes control of a user's Emails, Drives, etc. on both Microsoft and Google platforms. </p>
+                <p class="lead">There is also a control panel that helps you manage all the action you can perform. </p>
+                <hr class="my-4">
+                <p>Check below the <b>Get Started Guide</b> to successfully set up your campaign.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row sectionpadding">
+        <br />
+        <br />
+        <div class="col-sm-12">
+            <h4 class="text-center">Get Started</h4>
+            <hr />
+        </div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h6 class="text-center">Step 1</h6>
+            <p class="text-justify">The first step is to get the Malicious URL for the platform that you want. <a asp-area="" asp-controller="Home" asp-action="MaliciousUrls">Click here</a> or on the Malicious URLs menu item.</p>
+        </div>
+        <div class="col-sm-4">
+            <h6 class="text-center">Step 2</h6>
+            <p class="text-justify">The second step is to craft a realistic email containing the Malicious URL, send it to your victims and wait them to click it.</p>
+        </div>
+        <div class="col-sm-4">
+            <h6 class="text-center">Step 3</h6>
+            <p class="text-justify">The third step is to check which users have already been hooked in our platform and start malicious actions, such as get emails, get drives, etc. To do so, <a asp-area="" asp-controller="Users" asp-action="Index">click here</a> or the Hooked Users menu item.</p>
+        </div>
+    </div>
+    <div class="row sectionpadding">
+        <br />
+        <br />
+        <div class="col-sm-6">
+            <h4 class="text-center">Changelog</h4>
+            <hr />
+        </div>
+        <div class="col-sm-6">
+            <h4 class="text-center">Changelog (upcoming)</h4>
+            <hr />
+        </div>
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            @foreach (var details in current)
+            {
+                <div class="col-sm-12 text-justify">
+                    @if (details.Id == Model.CurrentVersion)
+                    {
+                        <h6>@details.Version <span class="badge badge-pill badge-success">New</span></h6>
+                    }
+                    else
+                    {
+                        <h6>@details.Version</h6>
+                    }
+                    <ul>
+                        @foreach(var item in details.Items)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        <div class="col-sm-6 text-center">
+            @foreach (var details in upcoming)
+            {
+                <div class="col-sm-12 text-justify">
+                    @if (details.Id == Model.CurrentVersion + 1)
+                    {
+                        <h6>@details.Version <span class="badge badge-pill badge-info">Coming Soon</span></h6>
+                    }
+                    else
+                    {
+                        <h6>@details.Version <span class="badge badge-pill badge-secondary">Future Release</span></h6>
+                    }
+                    <ul>
+                        @foreach (var item in details.Items)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

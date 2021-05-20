@@ -1,0 +1,20 @@
+﻿<div>
+    <p>Emails:</p>
+    <ul>
+        @foreach (var email in ViewBag.EmailMessages)
+        {
+            <li>@email.Subject</li>
+        }
+    </ul>
+</div>
+
+<div>
+    <p>One drive files:</p>
+    <ul>
+        @foreach (var file in ViewBag.OndriveFiles)
+        {
+            <li>@file.Name</li>
+            <li>@file.DownloadUrl</li>
+        }
+    </ul>
+</div>

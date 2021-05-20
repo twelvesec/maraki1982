@@ -1,0 +1,62 @@
+﻿@model Maraki1982.Web.Helpers.PaginatedList<Maraki1982.Core.Models.Database.Email>
+
+@{
+    ViewData["Title"] = "Email Folders";
+}
+
+<p>
+    Folder Name: @System.Convert.ToString(ViewBag.FolderName)
+</p>
+<p>
+    <a asp-action="GetEmails" asp-route-UserId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-folderId="@System.Convert.ToInt32(ViewBag.FolderId)">Get Emails</a>
+</p>
+
+<div style="text-align:right">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default">Next</a>
+    }
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Email Raw HTML
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td style="word-break:break-word">
+                    <a asp-action="DisplayRawEmail" asp-route-UserId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-folderId="@System.Convert.ToInt32(ViewBag.FolderId)" asp-route-fileId="@item.Id" target="_blank">Display Raw HTML</a>
+                </td>
+                <td style="word-break:break-word">
+                    <a asp-action="DisplayEmail" asp-route-UserId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-folderId="@System.Convert.ToInt32(ViewBag.FolderId)" asp-route-fileId="@item.Id" target="_blank">Display email</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-controller="EmailFolders" asp-action="Index" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)">Back to List</a>
+</div>

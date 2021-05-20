@@ -1,0 +1,35 @@
+﻿@model Maraki1982.Core.Models.Database.User
+
+@{
+    ViewData["Title"] = "Files";
+}
+
+<p>
+    <a asp-action="RefreshToken" asp-route-id="@Model.Id">Refresh Token</a>
+</p>
+
+<div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    Access token
+                </td>
+                <td style="word-break: break-word">
+                    @Model.AccessToken
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Refresh token
+                </td>
+                <td style="word-break: break-word">
+                    @Model.RefreshToken
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

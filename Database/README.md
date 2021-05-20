@@ -1,0 +1,1 @@
+The SQLite database will be added here, so that it will not be inside the web root of the application and not accessible by internet.

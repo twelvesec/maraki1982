@@ -1,0 +1,63 @@
+﻿@model Maraki1982.Web.Helpers.PaginatedList<Maraki1982.Core.Models.Database.EmailFolder>
+
+@{
+    ViewData["Title"] = "Email Folders";
+}
+
+<p>
+    <a asp-action="GetEmailFolders" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)">Get Email Folders</a> |
+    @if (Model.Count > 0)
+    {
+        <a asp-action="GetFoldersEmails" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)">Get Folders Emails</a>
+    }
+</p>
+
+<div style="text-align:right">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default">Next</a>
+    }
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Emails Number
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Emails.Count)
+                    </td>
+                    <td>
+                        <a asp-controller="Emails" asp-action="Index" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-folderId="@item.Id">Show Emails</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-controller="Users" asp-action="Index">Back to List</a>
+</div>

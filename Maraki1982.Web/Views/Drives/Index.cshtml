@@ -1,0 +1,59 @@
+﻿@model Maraki1982.Web.Helpers.PaginatedList<Maraki1982.Core.Models.Database.Drive>
+
+@{
+    ViewData["Title"] = "Drives";
+}
+
+<p>
+    <a asp-action="GetDrives" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)">Get Drives</a>
+</p>
+
+<div style="text-align:right">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default">Next</a>
+    }
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Microsoft Id
+                </th>
+                <th>
+                    Drive Type
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MsId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriveType)
+                    </td>
+                    <td>
+                        <a asp-controller="DriveFolders" asp-action="Index" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-driveId="@item.Id">Show Folders</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-controller="Users" asp-action="Index">Back to List</a>
+</div>

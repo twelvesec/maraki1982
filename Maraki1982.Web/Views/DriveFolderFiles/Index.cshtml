@@ -1,0 +1,62 @@
+﻿@model Maraki1982.Web.Helpers.PaginatedList<Maraki1982.Core.Models.Database.File>
+
+@{
+    ViewData["Title"] = "Files";
+}
+
+<p>
+    Folder Path: @System.Convert.ToString(ViewBag.FolderPath)
+</p>
+<p>
+    <a asp-action="GetDriveFolderFiles" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-driveId="@System.Convert.ToInt32(ViewBag.DriveId)" asp-route-folderId="@System.Convert.ToInt32(ViewBag.FolderId)">Get Drive Folder Files</a>
+</p>
+
+<div style="text-align:right">
+    @if (Model.HasPreviousPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default">Previous</a>
+    }
+
+    @if (Model.HasNextPage)
+    {
+        <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default">Next</a>
+    }
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Microsoft Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Download URL
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MsId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td style="word-break: break-word">
+                        <a href="@Html.DisplayFor(modelItem => item.DownloadUrl)" target="_blank">Click to download</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-controller="DriveFolders" asp-action="Index" asp-route-userId="@System.Convert.ToInt32(ViewBag.UserId)" asp-route-driveId="@System.Convert.ToInt32(ViewBag.DriveId)">Back to List</a>
+</div>
