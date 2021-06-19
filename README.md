@@ -1,5 +1,7 @@
 # Maraki1982
 
+Maraki1982 is an open source web social engineering post-exploitation management tool, which can be used to perform phishing attacks. You can use this tool for educational purposes, or in case you have the permission to perform its actions.
+  
 The application is divided into three parts:  
 - The first one is the Core part, where all the database code first and the communication with the services providers exists.
 - The second one is the Web part, where the redirect API endpoint exists, as well as all the functionality.
